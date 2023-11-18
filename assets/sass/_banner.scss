@@ -1,0 +1,148 @@
+.banner-section {
+    min-height: 828px;
+    background-color: map-get($map: $colors, $key: opacityColor);
+    @include position(relative);
+
+    & .wrapper {
+        min-height: 828px;
+        @include flex();
+        @include align($align: center);
+        @include justify($justify: center);
+    }
+
+    &__fig { @include position(absolute, $z-index: -1, $top: 0, $left: 0); }
+
+    &__banner-info {
+        color: map-get($map: $colors, $key: white);
+        @include flex();
+        @include align($align: center);
+        @include justify($justify: center);
+        @include direction($direction: column);
+        @include transform($property: translate(0, 40%));
+
+        & .sub-heading {
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 3px;
+            @include font($size: 12px, $weight: 700);
+        }
+        
+        & .heading {
+            margin-top: 10px;
+            width: 70%;
+            color: map-get($map: $colors, $key: white);
+        }
+    }
+
+    &__form {
+        margin-top: 35px;
+        width: 37%;
+        @include flex();
+        @include justify($justify: center);
+        @include position(relative);
+
+        & .input-grp {
+            width: 100%;
+
+            & .input-name {
+                padding: 18px 15px;
+                border: none;
+                border-radius: 25px;
+                width: 100%;
+                outline: none;
+            }
+        }
+
+        & .btn--green {
+            padding: 18px 35px;
+            @include position(absolute, $right: -5px);
+            @include font($size: 14px);
+        }
+    }
+
+    @at-root {
+        @include responsive-reverse(map-get($devices, tablet)) {
+            .btn--green:hover { 
+                background-color: map-get($map: $colors, $key: secondaryColor);
+                color: map-get($map: $colors, $key: primaryColor);
+            }
+        }
+
+        @include responsive(map-get($devices, tablet)){
+            &__banner-info { @include transform($property: translate(0, 0)); }
+            &__form { width: 50%; }
+
+            &__banner-info .heading{
+                width: 90%;
+                line-height: 50px;
+                @include font($size: 40px);
+            }
+        }
+
+        @include responsive(map-get($devices, ipad)){
+            &__form {
+                margin-top: 30px;
+
+                .input-grp .input-name { padding: 15px; }
+                .btn--green { padding: 15px 30px; }
+            }
+        }
+
+        @include responsive(map-get($devices, extralargePhone)){
+            .banner-section {
+                min-height: 650px;
+
+                .wrapper { min-height: 650px; }
+            }
+
+            &__banner-info .sub-heading { @include font($size: 10px); }
+
+            &__banner-info .heading{
+                width: 100%;
+                @include font($size: 36px);
+            }
+
+            &__form {
+                margin-top: 25px;
+                width: 60%;
+            }
+        }
+
+        @include responsive(map-get($devices, largePhone)){
+            .banner-section {
+                min-height: 600px;
+
+                .wrapper { min-height: 600px; }
+            }
+
+            &__banner-info .sub-heading { @include font($size: 9px); }
+
+            &__banner-info .heading{
+                margin-top: 5px;
+                line-height: 40px;
+                @include font($size: 30px);
+            }
+
+            &__form {
+                margin-top: 10px;
+                width: 73%;
+
+                .input-grp .input-name { padding: 13px; }
+                .btn--green { padding: 13px 25px; }
+            }
+        }
+
+        @include responsive(map-get($devices, mediumPhone)){
+            &__banner-info .heading{
+                line-height: 35px;
+                @include font($size: 26px);
+            }
+
+            &__form {
+                width: 87%;
+
+                .btn--green { padding: 13px 22px; }
+            }
+        }
+    }
+}

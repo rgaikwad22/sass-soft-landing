@@ -1,0 +1,121 @@
+// common styling starts here
+
+body {
+  overflow: hidden;
+  @include font($family: sans-serif);
+}
+
+a { text-decoration: none; }
+li { list-style-type: none; }
+
+.icon {
+  width: 13px;
+  height: 13px;
+  display: block;
+  position: relative;
+  color: map-get($map: $colors, $key: lightWhite);
+  text-indent: -9999px;
+}
+
+.icon:before,
+.icon::after {
+  display: block;
+  color: map-get($map: $colors, $key: secondaryColor);
+  text-indent: 0;
+  @include position($position: absolute, $top: 0, $left: 0);
+  @include transition(all, .2s, ease-in-out);
+  @include font($family: "FontAwesome");
+}
+
+.heading {
+  color: map-get($map: $colors, $key: lightBlack);
+  line-height: 60px;
+  text-transform: initial;
+  text-align: center;
+  @include font($size: 44px);
+  
+  @include responsive(map-get($devices, tablet)){
+    @include font($size: 40px);
+    line-height: 50px;
+  }
+  
+  @include responsive(map-get($devices, extralargePhone)){
+    @include font($size: 36px); 
+    line-height: 40px;
+  }
+  
+  @include responsive(map-get($devices, largePhone)){
+    @include font($size: 30px);
+    line-height: 30px;
+  }
+
+  @include responsive(map-get($devices, mediumPhone)){
+    @include font($size: 26px);
+  }
+}
+
+.btn {
+  padding: 18px 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: map-get($map: $colors, $key: primaryColor);
+  color: map-get($map: $colors, $key: white);
+  white-space: nowrap;
+  @include transition(all, .2s, ease-in-out);
+}
+
+figure {
+  width: 100%;
+  height: 100%;
+}
+
+img { @include img($width: 100%, $height: 100%, $objFit: cover); }
+
+.head {
+  color: map-get($map: $colors, $key: lightBlack);
+  text-transform: capitalize;
+  @include font($size: 28px);
+
+  @include responsive(map-get($devices, tablet)) {
+    .head { @include font($size: 26px); }
+  }
+}
+
+.section-para {
+  margin-top: 10px;
+  color: map-get($map: $colors, $key: lightGrey);
+  line-height: 22px;
+  @include font($size: 15px);
+}
+
+/*for wrapper*/
+.wrapper {
+  width: 86.50%;
+  max-width: 1290px;
+  margin: 0 auto;
+}
+
+@each $key, $value in $iconContent {
+  .icon-#{$key}::before {
+    content: $value;
+  }
+}
+
+// common styling ends here
+
+%bottom-up-arrow {
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  width: 0;
+  height: 0;
+  @include transform($property: translate(-50%, -50%));
+  text-indent: -9999px;
+}
+
+%textinput-textarea {
+  padding: 18px;
+  border: none;
+  border-bottom: 2px solid map-get($map: $colors, $key: yellowishWhite);
+  width: 100%;
+  outline: none;
+}

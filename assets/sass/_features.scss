@@ -1,0 +1,92 @@
+.features-section {
+    padding: 110px 0;
+
+    & .wrapper {
+        @include flex();
+        @include align($align: center);
+        @include justify($justify: center);
+    }
+
+    & .heading { text-align: start; }
+
+    &__list {
+        margin-top: 60px;
+        @include flex();
+
+        li:not(:last-child) { margin-right: 35px; }
+
+        li {
+            padding-bottom: 8px;
+            color: map-get($map: $colors, $key: lightGrey);
+            cursor: pointer;
+            @include font($size: 18px);
+            @include transition(all, .2s, ease-in-out);
+
+        }
+
+        .active {
+            border-bottom: 3px solid map-get($map: $colors, $key: primaryColor);
+            color: map-get($map: $colors, $key: lightBlack);
+        }
+    }
+
+    &__filter-list {
+        margin-top: 50px;
+        .section-para { width: 90%; }
+        .sec-desc { margin-top: 25px; }
+        li:not(:first-child) { display: none; }
+    }
+
+    @at-root {
+        @include responsive-reverse(map-get($devices, tablet)) {
+            &__list li:hover { 
+                border-bottom: 3px solid map-get($map: $colors, $key: primaryColor);
+                color: map-get($map: $colors, $key: lightBlack);
+            }
+        }
+
+        @include responsive(map-get($devices, tablet)){
+            .features-section {
+                padding: 80px 0;
+
+                &__list { margin-top: 45px; }
+                &__list li { @include font($size: 17px); }
+                &__filter-list { margin-top: 35px; }
+            }
+            
+            .head { @include font($size: 26px); }
+        }
+
+        @include responsive(map-get($devices, ipad)){
+            .features-section {
+                padding: 70px 0;
+                
+                .wrapper { @include direction($direction: column) }
+                &__filter-list .section-para { width: 100%; }
+                figure { width: 90% ; }
+                &__list { margin-top: 35px; }
+            }
+        }
+
+        @include responsive(map-get($devices, extralargePhone)){
+            .features-section {
+                padding: 60px 0;
+
+                &__list li { @include font($size: 16px); }
+            }
+        }
+
+        @include responsive(map-get($devices, largePhone)){
+            .features-section {
+                padding: 50px 0;
+
+                &__list li { @include font($size: 15px); }
+            }
+
+        }
+
+        @include responsive(map-get($devices, mediumPhone)){
+            .features-section { padding: 40px 0; }
+        }
+    }
+}

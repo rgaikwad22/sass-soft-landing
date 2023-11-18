@@ -1,0 +1,210 @@
+.aboutus-section {
+    &__top {
+        padding: 100px 0;
+        background-color: map-get($map: $colors, $key: lightdarkWhite);
+
+        .wrapper {
+            @include flex();
+            @include align($align: center);
+            @include justify($justify: center);
+            @include direction($direction: column);
+        }
+    }
+
+    &__team-list {
+        margin-top: 58px;
+        @include flex();
+        @include align($align: center);
+
+        li { width: 50%; }
+    }
+
+    &__fig {
+        img { @include img($width: 100%, $height: 100%, $objFit: contain) }
+    }
+
+    &__person-info {
+        padding: 30px;
+        position: relative;
+        background-color: map-get($map: $colors, $key: white);
+
+        .head {
+            margin-bottom: 10px;
+            @include font($size: 25px);
+        }
+
+        .designation { color: map-get($map: $colors, $key: secondaryColor); }
+
+    }
+
+    & .up-arrow {
+        border-bottom: 20px solid map-get($map: $colors, $key: white);
+        @extend %bottom-up-arrow;
+        @include position($position: absolute, $top: -10px, $left: 50%);
+    }
+
+    & .down-arrow {
+        border-top: 20px solid map-get($map: $colors, $key: white);
+        @extend %bottom-up-arrow;
+        @include position($position: absolute, $bottom: -30px, $left: 50%);
+    }
+
+    &__bottom {
+        padding: 90px 0;
+
+        .wrapper {
+            @include flex();
+            @include align($align: center);
+            @include justify($justify: center);
+        }
+
+        &__fig {
+            width: 50%;
+            height: 540px;
+        }
+
+        &__right {
+            padding: 60px 65px;
+            width: 50%;
+            height: 540px;
+            background-color: map-get($map: $colors, $key: secondaryColor);
+            @include flex();
+            @include direction($direction: column);
+            @include justify($justify: center);
+        }
+
+        &__description {
+            @include flex();
+            @include align($align: center);
+            @include justify($justify: center);
+
+            li { color: map-get($map: $colors, $key: white) }
+            li:not(:first-child) { display: none; }
+        }
+
+        &__profile-fig {
+            margin-top: 20px;
+            width: 60px;
+            height: 60px;
+            @include flex();
+            @include align($align: center);
+            
+            img {
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+
+            figcaption { color: map-get($map: $colors, $key: yellowishWhite); }
+        }
+
+        &__head { @include font($size: 40px); }
+
+        &__para {
+            margin-top: 20px;
+            color: map-get($map: $colors, $key: yellowishWhite);
+            line-height: 33px;
+            @include font($size: 24px);
+        }
+
+        &__slider-list {
+            margin-top: 40px;
+            @include flex();
+            @include justify($justify: center);
+
+            li {
+                width: 10px;
+                height: 10px;
+                padding: 5px;
+                border-radius: 50%;
+                background-color: map-get($map: $colors, $key: lightdarkWhite);
+                cursor: pointer;
+                @include transition(all, .2s, ease-in-out);
+            }
+
+            li:not(:last-child) { margin-right: 15px; }
+        }
+    }
+
+    @at-root {
+        @include responsive-reverse(map-get($devices, tablet)) {
+            &__bottom__slider-list li:hover { background-color: map-get($map: $colors, $key: lightGrey); }
+        }
+
+        @include responsive(map-get($devices, tablet)){
+            &__top,
+            &__bottom {
+                padding: 80px 0;
+            }
+            
+            &__person-info { padding: 25px; }
+            &__team-list { margin-top: 40px; }
+            &__bottom__right { padding: 35px; }
+            &__bottom__head { @include font($size: 35px); }
+
+            &__bottom__para { 
+                margin-top: 18px;
+                @include font($size: 21px); 
+            }
+
+            &__bottom__profile-fig {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @include responsive(map-get($devices, ipad)){
+            &__top,
+            &__bottom {
+                padding: 70px 0;
+            }
+
+            &__team-list li { width: 80%; }
+            &__team-list li:not(:last-child) { margin-bottom: 20px; }
+            &__bottom .wrapper { @include direction($direction: column); }
+            &__team-list {  @include direction($direction: column); }
+            
+            &__bottom__fig,
+            &__bottom__right { 
+                width: 80%;
+                height: 470px;
+            }
+ 
+            &__bottom__head { @include font($size: 30px); }
+            &__bottom__para { @include font($size: 18px); }
+        }
+
+        @include responsive(map-get($devices, extralargePhone)){
+            &__top,
+            &__bottom {
+                padding: 50px 0;
+            }
+        }
+
+        @include responsive(map-get($devices, largePhone)){
+            &__top,
+            &__bottom {
+                padding: 40px 0;
+            }
+
+            &__team-list li,
+            &__bottom__fig,
+            &__bottom__right {
+                width: 100%;
+            }
+        }
+
+        @include responsive(map-get($devices, mediumPhone)){
+            &__top,
+            &__bottom {
+                padding: 30px 0;
+            }
+
+            &__bottom__right { height: 500px; }
+
+        }
+
+        @include responsive(map-get($devices, smallPhone)){
+            &__bottom__right { height: 550px; }
+        }
+    }
+}
